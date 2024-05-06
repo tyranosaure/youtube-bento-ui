@@ -1,113 +1,222 @@
-import Image from 'next/image'
+'use client'
+import { Block, SidebarLink, SidebarAccount, Separator, Title } from '@/components/sidebar/elements'
+import Card from '@/components/video/card'
+
+// Main icons
+import HomeIcon from '@/assets/icons/Home.svg'
+import ShortsIcon from '@/assets/icons/Youtube short.svg'
+import SubscriptionsIcon from '@/assets/icons/Youtube abonnement.svg'
+import YoutubeMusicIcon from '@/assets/icons/Youtube music.svg'
+import YourAccountIcon from '@/assets/icons/User-square-2.svg'
+import HistoryIcon from '@/assets/icons/History.svg'
+import YourVideosIcon from '@/assets/icons/Youtube.svg'
+import WatchLaterIcon from '@/assets/icons/Timer-reset.svg'
+import DownloadsIcon from '@/assets/icons/Download-cloud.svg'
+import ShowMoreIcon from '@/assets/icons/Chevron-down.svg'
+import ShortContainer from '@/components/video/short'
+
+// Subscriptions pictures
+import Fouloscopie from '@/assets/fake-accounts/Fouloscopie.png'
+import GMilgram from '@/assets/fake-accounts/G-Milgram.png'
+import McFlyEtCarlito from '@/assets/fake-accounts/McFly-et-Carlito.png'
+import PepperpotTeam from '@/assets/fake-accounts/Pepperpot-Team.png'
+import SirGibsy from '@/assets/fake-accounts/Sir-Gibsy.png'
+import Squeezie from '@/assets/fake-accounts/SQUEEZIE.png'
+import TalesFromTheClick from '@/assets/fake-accounts/Tales-From-The-Click.png'
+import TheSciencoder from '@/assets/fake-accounts/The-Sciencoder.png'
+import Underscore from '@/assets/fake-accounts/Underscore_.png'
+import VileBrequin from '@/assets/fake-accounts/Vilebrequin.png'
+import WtfUx from '@/assets/fake-accounts/WTF-UX.png'
+import Inoxtag from '@/assets/fake-accounts/Inoxtag.png'
+import Jdg from '@/assets/fake-accounts/Jdg.png'
+
+// Explorer icons
+import TrendingIcon from '@/assets/icons/Star.svg'
+import MusicIcon from '@/assets/icons/Music.svg'
+import FilmsIcon from '@/assets/icons/Film.svg'
+import LiveIcon from '@/assets/icons/Nfc.svg'
+import GamingIcon from '@/assets/icons/Gamepad-2.svg'
+import ActualitesIcon from '@/assets/icons/Newspaper.svg'
+import SportIcon from '@/assets/icons/Mountain-snow.svg'
+import KnowledgeIcon from '@/assets/icons/Lightbulb.svg'
+import ModeIcon from '@/assets/icons/Glasses.svg'
+import Podcasts from '@/assets/icons/Mic.svg'
+
+// Other content icons
+import YoutubePremiumIcon from '@/assets/icons/Youtube.svg'
+
+// Card Videos
+import InoxtagVideo from '@/assets/fake-videos/InoxtagVideo.png'
+import JdgVideo from '@/assets/fake-videos/Jdgvideo.png'
+
+// Short Videos
+import Short1 from '@/assets/fake-videos/short-1.png'
+import CategoriesContainer from '@/components/categories/categories'
+import fetcher from '@/lib/fetcher'
+import useSWR from 'swr'
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	const { data, error } = useSWR('/api', fetcher)
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+	if (error) {
+		console.log(error)
+	}
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+	if (data) {
+		console.log(data.items.length)
+	} else {
+		console.log('loading...')
+	}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+	const Videos =
+		data?.items?.length > 0
+			? data?.items?.map((video) => {
+					console.log(video)
+					return {
+						id: video.id,
+						title: video.snippet.title,
+						duration: video.contentDetails.duration,
+						picture: video.snippet.thumbnails.high.url,
+						// accountPicture: video.snippet.channelThumbnails.default?.url,
+						accountName: video.snippet.channelTitle,
+						views: video.statistics.viewCount,
+						date: video.snippet.publishedAt,
+					}
+			  })
+			: Array(15)
+					.fill(null)
+					.map((video, index) => {
+						return {
+							id: index,
+							title: 'No data found',
+							duration: '0:00',
+							picture: InoxtagVideo,
+							accountPicture: Inoxtag,
+							accountName: 'No data found',
+							views: 0,
+							date: new Date(2021, 7, 1),
+						}
+					})
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+	const MainBlock = [
+		[
+			{ label: 'Accueil', href: '/', icon: HomeIcon, active: true },
+			{ label: 'Shorts', href: '/trending', icon: ShortsIcon },
+			{ label: 'Abonnements', href: '/subscriptions', icon: SubscriptionsIcon },
+			{ label: 'Youtube music', href: '/youtube-music', icon: YoutubeMusicIcon },
+		].map((link) => SidebarLink(link)),
+		Separator('Vous'),
+		[
+			{ label: 'Votre chaine', href: '/your-account', icon: YourAccountIcon },
+			{ label: 'Historique', href: '/history', icon: HistoryIcon },
+			{ label: 'Vos vidéos', href: '/your-videos', icon: YourVideosIcon },
+			{ label: 'À regarder plus tard', href: '/watch-later', icon: WatchLaterIcon },
+			{ label: 'Téléchargements', href: '/downloads', icon: DownloadsIcon },
+			{ label: 'Plus', href: '/playlists', icon: ShowMoreIcon },
+		].map((link) => SidebarLink(link)),
+	]
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+	const SubscriptionsBlock = [
+		Title('Abonnements'),
+		[
+			{ label: 'SQUEEZIE', href: '/account/SQUEEZIE', icon: Squeezie },
+			{ label: 'McFly et Carlito', href: '/account/McFly-et-Carlito', icon: McFlyEtCarlito },
+			{ label: 'Pepperpot Team', href: '/account/Pepperpot-Team', icon: PepperpotTeam },
+			{ label: 'Sir Gibsy', href: '/account/Sir-Gibsy', icon: SirGibsy },
+			{ label: 'Vilebrequin', href: '/account/Vilebrequin', icon: VileBrequin },
+			{ label: 'Fouloscopie', href: '/account/Fouloscopie', icon: Fouloscopie },
+			{ label: 'G Milgram', href: '/account/G-Milgram', icon: GMilgram },
+			{ label: 'The Sciencoder', href: '/account/The-Sciencoder', icon: TheSciencoder },
+			{ label: 'Underscore_', href: '/account/Underscore_', icon: Underscore },
+			{ label: "WTF'UX", href: '/account/WTF-UX', icon: WtfUx },
+			{ label: 'Tales From The Click', href: '/account/Tales-From-The-Click', icon: TalesFromTheClick },
+		].map((link) => SidebarAccount(link)),
+		SidebarLink({ label: 'Plus', href: '/playlists', icon: ShowMoreIcon }),
+	]
+
+	const ExploreBlock = [
+		Title('Explorer'),
+		[
+			{ label: 'Tendances', href: '/', icon: TrendingIcon },
+			{ label: 'Music', href: '/trending', icon: MusicIcon },
+			{ label: 'Films et séries TV', href: '/subscriptions', icon: FilmsIcon },
+			{ label: 'Direct', href: '/youtube-music', icon: LiveIcon },
+			{ label: 'Jeux vidéo', href: '/', icon: GamingIcon },
+			{ label: 'Actualités', href: '/trending', icon: ActualitesIcon },
+			{ label: 'Sport', href: '/subscriptions', icon: SportIcon },
+			{ label: 'Savoirs & Cultures', href: '/youtube-music', icon: KnowledgeIcon },
+			{ label: 'Mode et beauté', href: '/subscriptions', icon: ModeIcon },
+			{ label: 'Podcasts', href: '/youtube-music', icon: Podcasts },
+		].map((link) => SidebarLink(link)),
+	]
+
+	const OtherContentBlock = [
+		Title('Autres contenus Youtube'),
+		[
+			{ label: 'Youtube Premium', href: '/', icon: YoutubePremiumIcon },
+			{ label: 'Youtube Music', href: '/trending', icon: YoutubeMusicIcon },
+			{ label: 'Youtube Kids', href: '/subscriptions', icon: YoutubePremiumIcon },
+		].map((link) => SidebarLink(link)),
+	]
+
+	const Shorts = [
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+		{ title: '😏 Le meilleur prank ?', vues: 87000, miniature: Short1 },
+	]
+
+	const Categories = [
+		{ label: 'Tout', href: '/trending', active: true },
+		{ label: 'Musique', href: '/music' },
+		{ label: 'Gaming', href: '/gaming' },
+		{ label: 'Films', href: '/films' },
+		{ label: 'Actualités', href: '/actualites' },
+		{ label: 'En direct', href: '/live' },
+		{ label: 'Vidéos 360', href: '/360' },
+		{ label: 'Vidéos 4K', href: '/4k' },
+		{ label: 'Parcourir les chaînes', href: '/channels' },
+		{ label: 'Films', href: '/films' },
+		{ label: 'Actualités', href: '/actualites' },
+		{ label: 'En direct', href: '/live' },
+		{ label: 'Vidéos 360', href: '/360' },
+		{ label: 'Vidéos 4K', href: '/4k' },
+		{ label: 'Parcourir les chaînes', href: '/channels' },
+	]
+
+	return (
+		<main className='grid items-stretch justify-stretch gap-6 mb-6 text-sm auto-cols-fr grid-rows-[250px_250px_400px_auto]'>
+			<Block gridPosition='col-start-1 col-end-2 row-start-1 row-end-3'>{MainBlock.map((item) => item)}</Block>
+			<Block gridPosition='col-start-4 col-end-5 row-start-2 row-end-4'>{SubscriptionsBlock.map((item) => item)}</Block>
+			<Block gridPosition='col-start-4 col-end-5 row-start-5 row-end-7'>{ExploreBlock.map((item) => item)}</Block>
+			<Block gridPosition='col-start-1 col-end-2 row-start-6 row-end-7'>{OtherContentBlock.map((item) => item)}</Block>
+			<ShortContainer
+				gridPosition='col-start-1 col-end-4 row-start-3 row-end-4'
+				shorts={Shorts}
+			/>
+			<CategoriesContainer
+				gridPosition='col-start-1 col-end-5 row-start-4 row-end-5'
+				Categories={Categories}
+			/>
+			{Videos.map((video) => {
+				return (
+					<Card
+						key={video.id}
+						title={video.title}
+						duration={video.duration}
+						picture={video.picture}
+						accountPicture={video.accountPicture}
+						accountName={video.accountName}
+						views={video.views}
+						date={video.date}
+					/>
+				)
+			})}
+		</main>
+	)
 }
